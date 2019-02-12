@@ -1,4 +1,3 @@
 # Documentation Site
 
-- [Arduino Industrial 101 IOT configuration](/arduino_industrial_101.md)
-- [RPI node configuration](/rpi_node.md)
+This repo holds the documentation web site. All documentation is stored in the /gh-pages folder.
