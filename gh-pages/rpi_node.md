@@ -1,5 +1,5 @@
-Pinode Setup 
-============
+RPInode Configuration 
+=====================
 
 The purpose of this document is to describe how to build a Pinode software image which is used by a Raspberry PI to host one or more python based services.
 
