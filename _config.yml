@@ -1,5 +1,5 @@
 # name of the software
-name: Jekyll Docs Theme
+name: Documentation Site
 
 project:
     version: 0.1.0
@@ -15,12 +15,12 @@ license:
 links:
     header:
       - title: GitHub
-        url: https://github.com/allejo/jekyll-docs-theme
+        url: https://github.com/habakke/habakke.github.io
     footer:
       - title: GitHub
-        url: https://github.com/allejo/jekyll-docs-theme
+        url: https://github.com/habakke/habakke.github.io
       - title: Issues
-        url: https://github.com/allejo/jekyll-docs-theme/issues?state=open
+        url: https://github.com/habakke/habakke.github.ioissues?state=open
 
 ui:
     header:
@@ -30,8 +30,8 @@ ui:
 
 social:
     github:
-        user: allejo
-        repo: jekyll-docs-theme
+        user: habakke
+        repo: habakke.github.io
     twitter:
         enabled: false
         via:
