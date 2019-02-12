@@ -13,12 +13,7 @@ license:
     docs_url: http://creativecommons.org/licenses/by/3.0/
 
 links:
-    header:
-      - title: Edit this page
-        url: {{site.github.repository_url}}/blob/gh-pages/{{page.path}}
     footer:
-      - title: GitHub
-        url: https://github.com/habakke/habakke.github.io
       - title: Issues
         url: https://github.com/habakke/habakke.github.ioissues?state=open
 
