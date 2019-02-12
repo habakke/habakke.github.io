@@ -14,8 +14,8 @@ license:
 
 links:
     header:
-      - title: GitHub
-        url: https://github.com/habakke/habakke.github.io
+      - title: Edit this page
+        url: {{site.github.repository_url}}/blob/gh-pages/{{page.path}}
     footer:
       - title: GitHub
         url: https://github.com/habakke/habakke.github.io
