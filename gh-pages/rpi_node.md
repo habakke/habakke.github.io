@@ -43,8 +43,8 @@ ctrl_interface=/var/run/wpa_supplicant
 
 network={
     scan_ssid=1
-    ssid="b64"
-    psk="dagbladet"
+    ssid="SSID_1"
+    psk="XXXXXX"
     key_mgmt=WPA-PSK
     priority=1
     id_str="KRS"
@@ -52,8 +52,8 @@ network={
 
 network={
     scan_ssid=1
-    ssid="Skynet"
-    psk="Dagbladet"
+    ssid="SSID_2"
+    psk="XXXXXXXX"
     key_mgmt=WPA-PSK
     priority=2
     id_str="OSL"
