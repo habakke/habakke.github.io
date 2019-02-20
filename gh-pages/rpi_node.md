@@ -552,7 +552,7 @@ Issue these commands in the command prompt (I assume recorder.service file is al
 
 ~~~bash
 sudo systemctl daemon-reload
-sudo systemctl start recorder
+sudo systemctl start recorder.service
 ~~~
 
 The end.
