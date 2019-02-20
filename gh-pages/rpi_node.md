@@ -523,7 +523,7 @@ cd /opt/python-library
 python src/fbtest.py --test -r 480x320
 ~~~ 
 
-Configuring video recording service to run as a service by creating a recorder.service file in /etc/systemd/user folder:
+Configuring video recording service to run as a service by creating a recorder.service file in /etc/systemd/system folder:
 
 ~~~
 [Unit]
