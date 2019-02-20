@@ -534,11 +534,11 @@ After=network-online.target
 
 [Service]
 Restart=yes
-ExecStart=/opt/python-library/recorder
+ExecStart=/opt/python-library/start.sh
 ExecStop=/bin/kill -INT $MAINPID
 OOMScoreAdjust=-100
 TimeoutStopSec=10s
-User=pi
+User=root
 WorkingDirectory=/opt/python-library
 StandardInput=tty
 StandardOutput=tty
@@ -546,6 +546,7 @@ TTYPath=/dev/tty2
 
 [Install]
 WantedBy=multi-user.target
+Alias=recorder
 ~~~
 
 Issue these commands in the command prompt (I assume recorder.service file is already placed to the correct location where systemd can find it):
