@@ -296,7 +296,38 @@ To configure support for USB automounting, start by adding support for NTFS file
 sudo apt-get install ntfs-3g
 ~~~
 
+Format the USB device with a single NTFS partition. Verify that inserting the USB device into the RPI, the device shows up as /dev/sda1.
 
+~~~bash
+ls -l /dev/sd*
+~~~
+
+Edit the /etc/rc.local file, adding the command to  start the usbmount script just above the last line in the file. The file should then look like this
+
+~~~
+#!/bin/sh -e
+#
+# rc.local
+#
+# This script is executed at the end of each multiuser runlevel.
+# Make sure that the script will "exit 0" on success or any other
+# value on error.
+#
+# In order to enable or disable this script just change the execution
+# bits.
+#
+# By default this script does nothing.
+
+# Print the IP address
+_IP=$(hostname -I) || true
+if [ "$_IP" ]; then
+  printf "My IP address is %s\n" "$_IP"
+fi
+
+/opt/python-library/usbmount.sh & > /tmp/usbmount.log 2>&1
+
+exit 0
+~~~
 
 ### Configuring Adafruit PiTFT 3.5 for use by the Video Recording Service
 
