@@ -93,11 +93,84 @@ ssh-copy-id -i ~/.ssh/id_rsa pi@<rpi-ip>
 
 Login to the raspberry pi (The default user is  pi, and the password is raspberry.) and start executing the commands below.
 
-# Building Pinode image
+### Disable WiFi and Bluetooth
+
+To completely disable WiFi and Bluetooth, effectively putting the RPI in airplane mode, edit the file '/etc/modprobe.d/raspi-blacklist.conf'
+
+To disable WiFi, disable loading of the Broadcom WiFi drivers by adding these lines to the file:
+
+~~~bash
+blacklist brcmfmac
+blacklist brcmutil
+~~~
+
+To disable Bluebooth, disable loading of the Broadcom Bluetooth drivers by adding these lines to the file:
+
+~~~bash
+blacklist btbcm
+blacklist hci_uart
+~~~
+ 
+### Configuring USB automounting
+
+To configure support for USB automounting, start by adding support for NTFS file system.
+
+~~~bash
+sudo apt-get install ntfs-3g
+~~~
+
+Format the USB device with a single NTFS partition. Verify that inserting the USB device into the RPI, the device shows up as /dev/sda1.
+
+~~~bash
+ls -l /dev/sd*
+~~~
+
+Edit the /etc/rc.local file, adding the command to  start the usbmount script just above the last line in the file. The file should then look like this
+
+~~~
+#!/bin/sh -e
+#
+# rc.local
+#
+# This script is executed at the end of each multiuser runlevel.
+# Make sure that the script will "exit 0" on success or any other
+# value on error.
+#
+# In order to enable or disable this script just change the execution
+# bits.
+#
+# By default this script does nothing.
+
+# Print the IP address
+_IP=$(hostname -I) || true
+if [ "$_IP" ]; then
+  printf "My IP address is %s\n" "$_IP"
+fi
+
+/opt/python-library/usbmount.sh & > /tmp/usbmount.log 2>&1
+
+exit 0
+~~~
+
+### Setup ZeroTier One Service
+
+In order for the device to become a proper IOT device, it should be able to connect to it's home server automatically. One way of acomplishing this is to install a ZeroTier One client on the device. The device will then setup a VPN connection to it's ZeroTier controller. This can then be used to easily connect to the device, even though the actual IP of the device is unknown.
+
+~~~bash
+curl -s https://install.zerotier.com/ | sudo bash
+~~~ 
+
+Joining the RPI Recorder nodes network can be accomplished using the command below, where 'abfd31bd47683754' is the identifier of the Arduino Industrial 101 network.
+
+~~~bash
+sudo zerotier-cli join abfd31bd47683754
+~~~ 
+
+## Building Pinode image
 
 Once the image has been built and the wanted services deployed, a backup of the image should be created to simplify deploying the software image to other Raspberrry pi's.
 
-## Mac OSX
+### Mac OSX
 
 Connect the SD card and use the command below to list the devices connected and find disk name for the SD card:
 
@@ -145,7 +218,7 @@ Once it has finished writing the image to the SD card, you can remove it from yo
 sudo diskutil eject /dev/disk2
 ~~~ 
 
-## Linux
+### Linux
 
 Connect the SD card and use the command below to list the devices connected and find disk name for the SD card:
 
@@ -183,67 +256,8 @@ Wait while it completes. Before ejecting the SD card, make sure that your Linux 
 sudo sync
 ~~~ 
 
-## Windows
+### Windows
 
 TBD.
-
-# Setting up Pinode services
-
-The following chapters describes how to setup the available services on the Pinode platform. One or more services may be installed simultaneously.
- 
-## Configuring USB automounting
-
-To configure support for USB automounting, start by adding support for NTFS file system.
-
-~~~bash
-sudo apt-get install ntfs-3g
-~~~
-
-Format the USB device with a single NTFS partition. Verify that inserting the USB device into the RPI, the device shows up as /dev/sda1.
-
-~~~bash
-ls -l /dev/sd*
-~~~
-
-Edit the /etc/rc.local file, adding the command to  start the usbmount script just above the last line in the file. The file should then look like this
-
-~~~
-#!/bin/sh -e
-#
-# rc.local
-#
-# This script is executed at the end of each multiuser runlevel.
-# Make sure that the script will "exit 0" on success or any other
-# value on error.
-#
-# In order to enable or disable this script just change the execution
-# bits.
-#
-# By default this script does nothing.
-
-# Print the IP address
-_IP=$(hostname -I) || true
-if [ "$_IP" ]; then
-  printf "My IP address is %s\n" "$_IP"
-fi
-
-/opt/python-library/usbmount.sh & > /tmp/usbmount.log 2>&1
-
-exit 0
-~~~
-
-## Setup ZeroTier One Service
-
-In order for the device to become a proper IOT device, it should be able to connect to it's home server automatically. One way of acomplishing this is to install a ZeroTier One client on the device. The device will then setup a VPN connection to it's ZeroTier controller. This can then be used to easily connect to the device, even though the actual IP of the device is unknown.
-
-~~~bash
-curl -s https://install.zerotier.com/ | sudo bash
-~~~ 
-
-Joining the RPI Recorder nodes network can be accomplished using the command below, where 'abfd31bd47683754' is the identifier of the Arduino Industrial 101 network.
-
-~~~bash
-sudo zerotier-cli join abfd31bd47683754
-~~~ 
 
 The end.
