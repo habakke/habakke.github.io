@@ -19,7 +19,19 @@ sudo apt install arduino-mk
 
 # Uploading sketch to Arduino
 
-To upload a sketch to an Arduino connected using an USB cable from the Linux command line we first need to compile the Arduino sketch. The sketch project should already have a Makefile, so to build simply run make from the folder where the project is stored. This will create a folder build-<arduino-tag> which contains the compiled Arduino program.
+To upload a sketch to an Arduino connected using an USB cable from the Linux command line we first need to compile the Arduino sketch. The sketch project should already have a Makefile similar to the below template:
+
+~~~Makefile
+ARDUINO_DIR = /usr/share/arduino_dir
+ARDUINO_PORT = /dev/ttyACM*
+
+USER_LIB_PATH = ~/sketchbook/libraries
+BOARD_TAG = uno
+
+include /usr/share/arduino/Arduino.mk
+~~~
+
+To build simply run make from the folder where the project is stored. This will create a folder build-<arduino-tag> which contains the compiled Arduino program.
 
 ~~~bash
 make
