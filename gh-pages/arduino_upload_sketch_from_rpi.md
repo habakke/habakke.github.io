@@ -14,19 +14,21 @@ The purpose of this document is to describe how to install the necessary compone
 Login to the Raspberry PI and start by downloading the latest Arduino Linux binaries and extract to '/opt/arduino'
 
 ~~~bash
-cd /opt
-sudo wget https://www.arduino.cc/download_handler.php?f=/arduino-1.8.9-linuxarm.tar.xz
-sudo apt install xz-utils
-sudo tar xf arduino-1.8.9-linuxarm.tar.xz
-cd arduino
+sudo apt install arduino-mk
 ~~~
 
 # Uploading sketch to Arduino
 
-To upload a sketch to an Arduino connected using an USB cable, use the following command:
+To upload a sketch to an Arduino connected using an USB cable from the Linux command line we first need to compile the Arduino sketch. The sketch project should already have a Makefile, so to build simply run make from the folder where the project is stored. This will create a folder build-<arduino-tag> which contains the compiled Arduino program.
 
 ~~~bash
-/opt/arduino/arduino --upload <path to sketch> --port /dev/ttyUSB*
+make
+~~~
+
+To upload the compiled Arduino program, run make upload:
+
+~~~bash
+make upload
 ~~~
 
 # View serial output from Arduino
