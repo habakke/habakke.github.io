@@ -33,8 +33,17 @@ make upload
 
 # View serial output from Arduino
 
-To view the serial output form the Arduino and verify the sketch was successfully uploaded, minicom can be used. (Insert the correct baud rate specified in the Serial.begin(<baud>) command)
+To view the serial output form the Arduino run make monitor (requires screen)
 
 ~~~bash
-minicom -D /dev/ttyUSB* -b <baud rate>
+make monitor
 ~~~
+
+To exit the Arduino monitor press Ctrl+A and Ctrl+D. To reconnect to the screen run:
+
+~~~bash
+screen -r
+~~~
+
+
+
