@@ -45,5 +45,8 @@ To exit the Arduino monitor press Ctrl+A and Ctrl+D. To reconnect to the screen 
 screen -r
 ~~~
 
+To upload a new program to the Arduino, the screen application must be stopped. To stop screen run:
 
-
+~~~bash
+screen -X quit
+~~~
