@@ -16,9 +16,7 @@ Setting up the services are detailed in separate documents, using the IoT Pinode
 
 # Software Image Configuration
 
-The IoT Pinode software image builds upon the standard Rasbian software image for Raspberry PI. To do a headless Raspberry PI install start by downloading the latest Rasbian Stretch lite software image from [Rasbian](https://downloads.raspberrypi.org/raspbian_lite_latest) and extract the downloaded .zip file.
-
-Write the extracted .img file to a SD card using [Etcher](https://etcher.io). Once Etcher has successfully written the image to the SD card reconnect the SD card.
+The IOT Pinode software image builds upon the standard Rasbian software image for Raspberry PI. To do a headless Raspberry PI install start by downloading Raspberry Pi Imager from [Rasbian](https://www.raspberrypi.org/downloads/) and install the application. Use the application to install Rasbian Lite onto the SD card. Once Raspberry Pi Imager has successfully written the image to the SD card reconnect the SD card.
 
 ## Enable SSH
 
