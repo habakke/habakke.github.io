@@ -32,31 +32,9 @@ hdmi_force_hotplug=1
 
 ## Setting up wireless networking
 
-To setup the wireless networking automatically upon first boot, create a file called wpa_supplicant.conf for your particular wireless network in the root folder on the SD card. The file must contain the following lines:
+To setup the wireless networking automatically upon first boot, put your wifi settings into the wpa_supplicant.conf file in the root of the SD card. (There is a [pretty handy online generator](https://steveedson.co.uk/tools/wpa/) you can use.)
 
-~~~bash
-country=no
-update_config=1
-ctrl_interface=/var/run/wpa_supplicant
-
-network={
-    scan_ssid=1
-    ssid="SSID_1"
-    psk="XXXXXX"
-    key_mgmt=WPA-PSK
-    priority=1
-    id_str="KRS"
-}
-
-network={
-    scan_ssid=1
-    ssid="SSID_2"
-    psk="XXXXXXXX"
-    key_mgmt=WPA-PSK
-    priority=2
-    id_str="OSL"
-}
-~~~ 
+> If a wpa_supplicant.conf file is placed into the /boot/ directory, this will be moved to the /etc/wpa_supplicant/ directory the next time the system is booted, overwriting the network settings; this allows a Wifi configuration to be preloaded onto a card from a Windows or other machine that can only see the boot partition
 
 To change the wireless network configuration once you have successfully booted and connected to the Raspberry PI, use the included raspberry pi configuration tool. From the menu select (2) Network Options and (N2) Wi-fi. Then enter the correct SSID and password for the selected network.
 
